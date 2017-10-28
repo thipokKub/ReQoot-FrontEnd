@@ -1,0 +1,101 @@
+$normSize: 150px;
+$smallSize: 250px;
+$googlefont: Raleway;
+
+@import url('https://fonts.googleapis.com/css?family=#{$googlefont}');
+
+@mixin exactSize($width, $height) {
+    min-width: $width;
+    max-width: $width;
+    width: $width;
+    height: $height;
+    min-height: $height;
+    max-height: $height;
+}
+
+body {
+    font-family: $googlefont !important;
+}
+
+.modal-header {
+    padding: 0px !important;
+    position: relative;
+    button.close {
+        & > span:first-child {
+            display: none;
+        }
+        &:before {
+            content: "\f00d";
+            display: inline-block;
+            font: normal normal normal 14px/1 FontAwesome;
+            font-size: 30px;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+    }
+}
+
+.Modal-Body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    .profile-modal {
+        @include exactSize($normSize, $normSize);
+        border-radius: 50%;
+        background-color: #AAA;
+    }
+    
+    .Top {
+        flex: 1;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        // justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+
+        span {
+            display: block;
+            padding: 0px !important;
+            font-size: 25px;
+        }
+
+        :not(.profile-modal) {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+    }
+
+    .Bottom {
+        flex: 1;
+
+        div:first-child::before {
+            content: " ";
+            display: inline-block;
+            margin-left: 40px;
+        }
+    }
+}
+
+@media all and (max-width: 600px) {
+    .Modal-Body {
+        .Top {
+            flex-direction: column;
+            align-items: center;
+
+            .profile-modal {
+                @include exactSize($smallSize, $smallSize);
+            }
+        }
+    }
+}
+
+.active-shadow-none:active {
+    box-shadow: none !important;
+}
