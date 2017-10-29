@@ -37,6 +37,11 @@ const ResultPageStyle = styled.div`
         visibility: visible;
         transition: opacity 0.2s;
     }
+
+    h2 {
+        width: 100%;
+        color: #FFF;
+    }
 `;
 
 const amountOfDummy = 3;
@@ -155,6 +160,7 @@ class ResultPage extends Component {
 
         return (
             <ResultPageStyle>
+                <h2>Top 3 Developers</h2>
                 {
                     (this.state.info.map((item, key) => {
                         return (
