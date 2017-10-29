@@ -65,7 +65,7 @@ const RegisterStyle = styled.div`
         background-image: none;
         color: #FFF;
         width: ${sideButtonSize}px;
-        display: none;
+        // display: none;
 
         &.left {
             left: ${-1*sideButtonSize}px;
@@ -317,7 +317,7 @@ class Register extends Component {
             const data = {
                 'title': trim(_.get(this.state, "Form['Job Description'][0].value", '')),
                 'Qualifications': _.get(this.state, "Form['Job Description'][1].value", []).map((text) => trim(text)).filter((text) => text.length > 0),
-                'Experience': Number(trim(_.get(this.state, "Form['Job Description'][2].value", '0')))
+                'Experience (years)': Number(trim(_.get(this.state, "Form['Job Description'][2].value", '0')))
             }
 
             let config = {
