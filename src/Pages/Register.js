@@ -329,10 +329,28 @@ class Register extends Component {
             // console.log(data)
             // {'header': {'Authorization': 'Basic Zm1pbmRleDpmb2N1c2t1eQ=='}}
             Axios.post(PostJobURI, data, config).then((res) => {
-                this.props.onUpdateResult(res.data);
+                console.log(res);
+                let template = {
+                    'State': 'NA',
+                    'Avatar': '',
+                    'Name': 'Ekakak Leelasornchai',
+                    'Description': '',
+                    'Skills': []
+                };
+                
+                let sum = res.data.prediction_summary.split('" | "').filter((text, key) => text.length > 0);
+                let new_data = res.data.prediction_skill.split('" | "').filter((text, key) => text.length > 0).map((text, key) => {
+                    return {
+                        ...template,
+                        'Skills': text.split(',').filter((text) => text.length > 0).map((sk) => sk.split(":")[0]).filter((sk) => sk.length > 0),
+                        'Description': sum[key],
+                        'Avatar': Avatar[Math.floor(Math.random() * (16))]
+                    }
+                })
+                this.props.onUpdateResult(new_data);
                 this.props.onSetIsLoading(false);
             }, (error) => {
-                // console.log(error, JSON.parse(JSON.stringify(error)));
+                console.log(error, JSON.parse(JSON.stringify(error)));
                 this.props.onUpdateResult(info);
                 this.props.onSetIsLoading(false);
             })
