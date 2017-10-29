@@ -7,6 +7,10 @@ const HomeStyle = styled.div`
     justify-content: center;
     align-items: flex-start;
 
+    .fa {
+        margin-right: 10px;
+    }
+
     .card {
         margin-top: 40px;
         margin-bottom: 40px;
@@ -82,11 +86,11 @@ class HomePage extends Component {
                     <div className="w3-container content w3-white">
                         <form onSubmit={(e) => e.preventDefault() && false}>
                             <div>
-                                <label>Username</label>
+                                <label><i className="fa fa-user" />Username</label>
                                 <input className="w3-input" type="text" value="Admin" />
                             </div>
                             <div>
-                                <label>Password</label>
+                                <label><i className="fa fa-key" />Password</label>
                                 <input className="w3-input" type="password" value="password1234Eiei" />
                             </div>
                         </form>

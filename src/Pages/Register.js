@@ -137,7 +137,7 @@ const RegisterStyle = styled.div`
 `;
 
 const Form_Order_New = ['Credential', 'Basic Info'];
-const Form_Order = ['Credential', 'Basic Info', 'Job Description'];
+const Form_Order = ['Basic Info', 'Credential', 'Job Description'];
 const Form = {
     'Credential': [
         {
@@ -257,6 +257,11 @@ const info = [{
     'Avatar': Avatar[Math.floor(Math.random() * (16))]
 }];
 
+function trim(str) {
+    if (typeof str === "string") return str.replace(/^\s+|\s+$/g, '');
+    return str;
+};
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -310,9 +315,9 @@ class Register extends Component {
             this.props.onSetIsLoading(true);
             //Do ajax call here
             const data = {
-                'title': _.get(this.state, "Form['Job Description'][0].value", ''),
-                'Qualifications': _.get(this.state, "Form['Job Description'][1].value", ''),
-                'Experience (years)': Number(_.get(this.state, "Form['Job Description'][2].value", 0))
+                'title': trim(_.get(this.state, "Form['Job Description'][0].value", '')),
+                'Qualifications': _.get(this.state, "Form['Job Description'][1].value", []).map((text) => trim(text)).filter((text) => text.length > 0),
+                'Experience': Number(trim(_.get(this.state, "Form['Job Description'][2].value", '0')))
             }
 
             console.log(data)
