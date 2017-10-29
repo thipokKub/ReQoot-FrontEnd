@@ -320,12 +320,18 @@ class Register extends Component {
                 'Experience': Number(trim(_.get(this.state, "Form['Job Description'][2].value", '0')))
             }
 
+            let config = {
+                'headers': {
+                    'crossDomain': true
+                }
+            }
+
             console.log(data)
             // {'header': {'Authorization': 'Basic Zm1pbmRleDpmb2N1c2t1eQ=='}}
-            Axios.post('http://127.0.0.1:8000/api/prediction', data).then((res) => {
+            Axios.post('http://127.0.0.1:8000/api/prediction', data, config).then((res) => {
                 console.log(res);
             }, (error) => {
-                console.log('error');
+                console.log(error, JSON.parse(JSON.stringify(error)));
             })
 
             setTimeout(() => {
