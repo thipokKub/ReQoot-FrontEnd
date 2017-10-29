@@ -326,18 +326,21 @@ class Register extends Component {
                 }
             }
 
-            console.log(data)
+            // console.log(data)
             // {'header': {'Authorization': 'Basic Zm1pbmRleDpmb2N1c2t1eQ=='}}
             Axios.post(PostJobURI, data, config).then((res) => {
-                console.log(res);
+                this.props.onUpdateResult(res.data);
+                this.props.onSetIsLoading(false);
             }, (error) => {
-                console.log(error, JSON.parse(JSON.stringify(error)));
+                // console.log(error, JSON.parse(JSON.stringify(error)));
+                this.props.onUpdateResult(info);
+                this.props.onSetIsLoading(false);
             })
 
-            setTimeout(() => {
-                this.props.onSetIsLoading(false);
-                this.props.onUpdateResult(info);
-            }, 1000);
+            // setTimeout(() => {
+            //     this.props.onSetIsLoading(false);
+            //     this.props.onUpdateResult(info);
+            // }, 1000);
         }
         else {
             alert('Registered profile');

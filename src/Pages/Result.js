@@ -152,6 +152,7 @@ class ResultPage extends Component {
 
     render() {
         const currentItem = (this.state.activeIndex >= 0) ? this.state.info[this.state.activeIndex] : {};
+        console.log(currentItem);
         // const RecalBtn = (
         //     <div className="w3-card-2 w3-hover-shadow w3-container w3-green top-right active-shadow-none">
         //         Re-Calaculate
@@ -160,7 +161,7 @@ class ResultPage extends Component {
 
         return (
             <ResultPageStyle>
-                <h2>Top 3 Developers</h2>
+                <h2>{`Top ${this.state.info.length} Developers`}</h2>
                 {
                     (this.state.info.map((item, key) => {
                         return (
