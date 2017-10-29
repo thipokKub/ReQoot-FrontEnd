@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Axios from 'axios';
 import { Carousel } from 'react-bootstrap';
-import { JobList } from '../constrain';
+import { JobList, PostJobURI } from '../constrain';
 import ListText from '../Components/ListText';
 import _ from 'lodash';
 import avatar1 from '../Images/Avatar/1.svg';
@@ -328,7 +328,7 @@ class Register extends Component {
 
             console.log(data)
             // {'header': {'Authorization': 'Basic Zm1pbmRleDpmb2N1c2t1eQ=='}}
-            Axios.post('http://127.0.0.1:8000/api/prediction', data, config).then((res) => {
+            Axios.post(PostJobURI, data, config).then((res) => {
                 console.log(res);
             }, (error) => {
                 console.log(error, JSON.parse(JSON.stringify(error)));
