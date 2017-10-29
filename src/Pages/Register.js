@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+
+import Axios from 'axios';
 import { Carousel } from 'react-bootstrap';
-import _ from 'lodash';
-import ListText from '../Components/ListText';
-
 import { JobList } from '../constrain';
-
+import ListText from '../Components/ListText';
+import _ from 'lodash';
 import avatar1 from '../Images/Avatar/1.svg';
+import avatar10 from '../Images/Avatar/10.svg';
+import avatar11 from '../Images/Avatar/11.svg';
+import avatar12 from '../Images/Avatar/12.svg';
+import avatar13 from '../Images/Avatar/13.svg';
+import avatar14 from '../Images/Avatar/14.svg';
+import avatar15 from '../Images/Avatar/15.svg';
+import avatar16 from '../Images/Avatar/16.svg';
 import avatar2 from '../Images/Avatar/2.svg';
 import avatar3 from '../Images/Avatar/3.svg';
 import avatar4 from '../Images/Avatar/4.svg';
@@ -15,13 +21,7 @@ import avatar6 from '../Images/Avatar/6.svg';
 import avatar7 from '../Images/Avatar/7.svg';
 import avatar8 from '../Images/Avatar/8.svg';
 import avatar9 from '../Images/Avatar/9.svg';
-import avatar10 from '../Images/Avatar/10.svg';
-import avatar11 from '../Images/Avatar/11.svg';
-import avatar12 from '../Images/Avatar/12.svg';
-import avatar13 from '../Images/Avatar/13.svg';
-import avatar14 from '../Images/Avatar/14.svg';
-import avatar15 from '../Images/Avatar/15.svg';
-import avatar16 from '../Images/Avatar/16.svg';
+import styled from 'styled-components';
 
 const Avatar = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9, avatar10, avatar11, avatar12, avatar13, avatar14, avatar15, avatar16];
 
@@ -311,11 +311,17 @@ class Register extends Component {
             //Do ajax call here
             const data = {
                 'title': _.get(this.state, "Form['Job Description'][0].value", ''),
-                'Qualification': _.get(this.state, "Form['Job Description'][1].value", ''),
-                'Experience': Number(_.get(this.state, "Form['Job Description'][2].value", 0))
+                'Qualifications': _.get(this.state, "Form['Job Description'][1].value", ''),
+                'Experience (years)': Number(_.get(this.state, "Form['Job Description'][2].value", 0))
             }
 
             console.log(data)
+            // {'header': {'Authorization': 'Basic Zm1pbmRleDpmb2N1c2t1eQ=='}}
+            Axios.post('http://127.0.0.1:8000/api/prediction', data).then((res) => {
+                console.log(res);
+            }, (error) => {
+                console.log('error');
+            })
 
             setTimeout(() => {
                 this.props.onSetIsLoading(false);
